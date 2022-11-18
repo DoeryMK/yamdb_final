@@ -45,10 +45,10 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
 
     - name: Push image to Docker Hub
-      uses: docker/build-push-action@v2
+      uses: docker/build-push-action@v1
       with:
         push: true
-        tags: doerymi/api_yamdb:latest 
+        tags: doerymi/api_yamdb:latest
 
   deploy:
     name: Deploy from Docker Hub to the Server
