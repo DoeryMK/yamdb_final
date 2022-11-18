@@ -22,6 +22,7 @@ jobs:
 
     - name: Correspondence to PEP8 and start pytest
       run: |
+        cd api_yamdb/
         python -m flake8
         cd ..
         pytest
