@@ -45,7 +45,7 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
 
     - name: Push image to Docker Hub
-      uses: docker/build-push-action@v3
+      uses: docker/build-push-action@v2
       with:
         push: true
         tags: doerymi/api_yamdb:v0.1
