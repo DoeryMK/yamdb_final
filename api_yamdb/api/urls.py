@@ -1,9 +1,8 @@
-from django.urls import include, path
-from rest_framework import routers
-
 from api.views import (CategoryViewSet, CommentViewSet, GenreViewSet,
                        ReviewViewSet, SignupUserAPIView, TitleViewSet,
                        TokenAuthApiView, UserViewSet)
+from django.urls import include, path
+from rest_framework import routers
 
 auth_urls = [
     path(r'token/', TokenAuthApiView.as_view()),
