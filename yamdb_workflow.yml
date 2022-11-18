@@ -48,7 +48,7 @@ jobs:
       uses: docker/build-push-action@v1
       with:
         push: true
-        tags: doerymi/api_yamdb:latest
+        tags: doerymi/api_yamdb:v0.1
 
   deploy:
     name: Deploy from Docker Hub to the Server
