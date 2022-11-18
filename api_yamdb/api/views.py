@@ -8,6 +8,7 @@ from rest_framework import filters, generics, mixins, status, viewsets
 from rest_framework.decorators import action
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
+
 from reviews.models import Category, Genre, Review, Title
 from users.models import User
 
@@ -133,8 +134,7 @@ class ReviewViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         title = get_object_or_404(Title, id=self.kwargs.get('title_id'))
-        new_queryset = title.reviews.select_related('author').all()
-        return new_queryset
+        return title.reviews.select_related('author').all()
 
     def perform_create(self, serializer):
         title = get_object_or_404(Title, id=self.kwargs.get('title_id'))
@@ -149,8 +149,7 @@ class CommentViewSet(viewsets.ModelViewSet):
         title_id = self.kwargs.get('title_id')
         review_id = self.kwargs.get('review_id')
         review = get_object_or_404(Review, id=review_id, title=title_id)
-        queryset = review.comments.select_related('author').all()
-        return queryset
+        return review.comments.select_related('author').all()
 
     def perform_create(self, serializer):
         title_id = self.kwargs.get('title_id')

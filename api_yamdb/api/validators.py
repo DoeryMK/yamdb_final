@@ -15,7 +15,7 @@ class UserDataValidation:
             raise ValidationError(
                 f'В username допустимо использовать только буквы, цифры и '
                 f'знаки @.+-_. Применение {restricted_symbols} запрещено.')
-        elif username == self.RESTRICTED_USERNAME:
+        if username == self.RESTRICTED_USERNAME:
             raise ValidationError(
                 f'Использовать имя {self.RESTRICTED_USERNAME} '
                 'в качестве username запрещено.')
