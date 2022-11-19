@@ -11,7 +11,7 @@ services:
       - ./.env
       
   web:
-    image: doerymi/api_yamdb:latest
+    image: doerymi/yamdb_final:latest
     container_name: web-container
     restart: always
 
