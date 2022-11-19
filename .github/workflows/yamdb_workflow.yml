@@ -77,13 +77,13 @@ jobs:
           echo SECRET_KEY=${{ secrets.SECRET_KEY }} >> .env
           sudo docker-compose up -d 
 
-  send_report_message:
-    runs-on: ububntu-latest
-    needs: deploy
-    steps:
-    - name: send message
-      uses: appleboy/telegram-action@master
-      with:
-        to: ${{ secrets.TELEGRAM_TO }}
-        token: ${{ secrets.TELEGRAM_TOKEN }}
-        message: ${{ github.workflow }} выполнен успешно, поздравляю!
+  # send_report_message:
+  #   runs-on: ububntu-latest
+  #   needs: deploy
+  #   steps:
+  #   - name: send message
+  #     uses: appleboy/telegram-action@master
+  #     with:
+  #       to: ${{ secrets.TELEGRAM_TO }}
+  #       token: ${{ secrets.TELEGRAM_TOKEN }}
+  #       message: ${{ github.workflow }} выполнен успешно, поздравляю!
