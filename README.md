@@ -21,7 +21,7 @@
 
 
 ## **Статус workflow**
-![push to master](https://github.com/DoeryMK/yamdb_final/actions/workflows/main.yml/badge.svg?event=push)
+![push to master](https://github.com/DoeryMK/yamdb_final/actions/workflows/yamdb_workflow.yml/badge.svg?event=push)
 
 
 
