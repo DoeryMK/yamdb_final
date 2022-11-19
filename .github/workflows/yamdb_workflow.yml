@@ -12,7 +12,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: 3.9
+        python-version: 3.7
 
     - name: Install dependencies
       run: |
@@ -24,8 +24,8 @@ jobs:
       run: |
         cd api_yamdb/
         python -m flake8
-        cd ..
-        pytest
+        # cd ..
+        # pytest
 
   build_and_push_to_docker_hub:
     name: Build and push Docker image to Docker Hub
