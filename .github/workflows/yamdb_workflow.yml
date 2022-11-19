@@ -78,6 +78,7 @@ jobs:
           sudo docker compose up -d 
 
   send_report_message:
+    name: Send message to telegram chat
     runs-on: ububntu-latest
     needs: deploy
     steps:
@@ -86,4 +87,4 @@ jobs:
       with:
         to: ${{ secrets.TELEGRAM_TO }}
         token: ${{ secrets.TELEGRAM_TOKEN }}
-        message: ${{ github.workflow }} выполнен успешно, поздравляю!
+        message: выполнен успешно, поздравляю!
