@@ -45,8 +45,9 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
 
     - name: Push image to Docker Hub
-      uses: docker/build-push-action@v1
+      uses: docker/build-push-action@v3
       with:
+        context: api_yamdb/
         push: true
         tags: doerymi/yamdb_final:latest
 
@@ -63,6 +64,7 @@ jobs:
         key: ${{ secrets.SSH_KEY }}
         passphrase: ${{ secrets.PASSPHRASE }}
         scripts: |
+          sudo docker pull doerymi/yamdb_final
           sudo docker-compose stop
           sudo docker-compose rm web
           touch .env
