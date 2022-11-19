@@ -8,12 +8,12 @@ services:
     volumes:
       - db_data:/var/lib/postgresql/data
     env_file:
-      - .env
+      - ./.env
       
   web:
-    image: doerymi/yamdb_final:latest
+    image: doerymi/yamdb_final
     container_name: web-container
-    restart: always
+    #restart: always
 
     volumes:
       - static_value:/app/static/
@@ -22,7 +22,7 @@ services:
     depends_on:
       - db
     env_file:
-      - .env
+      - ./.env
 
   nginx:
     image: nginx:1.21.3-alpine
