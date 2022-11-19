@@ -67,7 +67,7 @@ jobs:
           sudo docker pull doerymi/yamdb_final
           sudo docker compose stop
           sudo docker compose rm web
-          touch .env
+          sudo touch .env
           echo DB_ENGINE=${{ secrets.DB_ENGINE }} >> .env
           echo DB_NAME=${{ secrets.DB_NAME }} >> .env
           echo POSTGRES_USER=${{ secrets.POSTGRES_USER }} >> .env
@@ -87,4 +87,9 @@ jobs:
       with:
         to: ${{ secrets.TELEGRAM_TO }}
         token: ${{ secrets.TELEGRAM_TOKEN }}
-        message: ${{ github.workflow }} выполнен успешно, поздравляю!
+        message: |
+            ${{ github.actor }} выполнил commit:
+            Commit message: ${{ github.event.commits[0].message }}
+            Репозиторий: ${{ github.repository }}
+            ${{ github.workflow }} выполнен успешно, поздравляю!
+            Изменения: https://github.com/${{ github.repository }}/commit/${{github.sha}}
