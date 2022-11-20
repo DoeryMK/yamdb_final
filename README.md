@@ -51,10 +51,10 @@ docker-compose exec web python manage.py import_data
 docker-compose exec web python manage.py dumpdata > fixtures.json
 ```
 
-Проект доступен по [адресу](https://ypyield.ddns.net/)
+Проект доступен по [адресу](http://ypyield.ddns.net/)
 
 ## _Документация проекта доступна по ссылке_ 
-(https://ypyield.ddns.net/redoc) 
+(http://ypyield.ddns.net/redoc) 
 
 ## **Тестирование через HHTP-клиент**
 Для тестирования работы API проекта можно воспользоваться HHTP-клиентом [Postman](https://www.postman.com) или [httpie](https://httpie.io). 
