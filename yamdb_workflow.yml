@@ -1,18 +1,24 @@
-name: yamdb workflow
+name: yamdb-app workflow
 
-on: [push]
+on: push
+  branches: [ master ]
 
 jobs:
   tests:
-    name: Initial project's tests
+    name: Initial tests
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.7", "3.8", "3.9", "3.10"]
+
+    name: Python ${{ matrix.python-version }} sample
     steps:
     - uses: actions/checkout@v3
 
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: 3.7
+        python-version: ${{ matrix.python-version }}
 
     - name: Install dependencies
       run: |
@@ -65,9 +71,9 @@ jobs:
         passphrase: ${{ secrets.PASSPHRASE }}
         scripts: |
           sudo docker pull doerymi/yamdb_final
-          sudo docker compose stop
-          sudo docker compose rm web
-          sudo touch .env
+          sudo docker-compose stop
+          sudo docker-compose rm web
+          touch .env
           echo DB_ENGINE=${{ secrets.DB_ENGINE }} >> .env
           echo DB_NAME=${{ secrets.DB_NAME }} >> .env
           echo POSTGRES_USER=${{ secrets.POSTGRES_USER }} >> .env
@@ -75,7 +81,7 @@ jobs:
           echo DB_HOST=${{ secrets.DB_HOST }} >> .env
           echo DB_PORT=${{ secrets.DB_PORT }} >> .env
           echo SECRET_KEY=${{ secrets.SECRET_KEY }} >> .env
-          sudo docker compose up -d 
+          docker-compose up -d 
 
   send_report_message:
     name: Send message to telegram chat
@@ -88,8 +94,7 @@ jobs:
         to: ${{ secrets.TELEGRAM_TO }}
         token: ${{ secrets.TELEGRAM_TOKEN }}
         message: |
-            ${{ github.actor }} выполнил commit:
+            ${{ github.actor }} выполнил commit.
             Commit message: ${{ github.event.commits[0].message }}
             Репозиторий: ${{ github.repository }}
             ${{ github.workflow }} выполнен успешно, поздравляю!
-            Изменения: https://github.com/${{ github.repository }}/commit/${{github.sha}}
