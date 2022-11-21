@@ -1,7 +1,6 @@
 name: yamdb-app workflow
 
 on: push
-  branches: [ master ]
 
 jobs:
   tests:
@@ -34,6 +33,8 @@ jobs:
     name: Build and push Docker image to Docker Hub
     runs-on: ubuntu-latest
     needs: tests
+
+    if github.ref == 'refs/heads/master'
     steps:
     - name: Check out the repository avaliabillity
       uses: actions/checkout@v3 
