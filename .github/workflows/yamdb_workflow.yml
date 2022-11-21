@@ -34,7 +34,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: tests
 
-    if: github.ref == 'refs/heads/dev'
+    if: github.ref == 'refs/heads/master'
     steps:
     - name: Check out the repository avaliabillity
       uses: actions/checkout@v3 
